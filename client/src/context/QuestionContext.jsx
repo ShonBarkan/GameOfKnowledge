@@ -4,23 +4,25 @@ import { useState,useEffect } from 'react';
 
 export const QuestionContext = createContext()
 
-const q = {
-    "question": "What is the capital of France?",
-    "options": [
-        {option:"Berlin" , isCorrect:false},
-        {option:"London" , isCorrect:false},
-        {option:"Rome" , isCorrect:false},
-        {option:"Paris" , isCorrect:true},
-    ]
-}
-
 const QuestionContextProvider = ({children}) => {
-    const [question, setQuestion] = useState(q)
+    const [question, setQuestion] = useState({
+        "question": "Loading....",
+        "options": [
+            {"option":"Loading" , "isCorrect":false},
+            {"option":"Loading" , "isCorrect":false},
+            {"option":"Loading" , "isCorrect":false},
+            {"option":"Loading" , "isCorrect":false},
+            {"option":"Loading" , "isCorrect":false},
+            {"option":"Loading" , "isCorrect":true}
+        ]
+     })
+    const [questionNumber, setQuestionNumber] = useState(0)
     const [shuffledOptions, setShuffledOptions] = useState([]);
 
     return ( 
         <QuestionContext.Provider value={{
             question, setQuestion,
+            questionNumber, setQuestionNumber,
             shuffledOptions, setShuffledOptions
         }}>
             {children}
